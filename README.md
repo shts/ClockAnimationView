@@ -1,6 +1,8 @@
 ClockAnimationView
 ====
 
+[![](https://jitpack.io/v/shts/ClockAnimationView.svg)](https://jitpack.io/#shts/ClockAnimationView)
+
 Android animated clock view.
 
 <img src="animation.gif" width=200 />
@@ -45,7 +47,9 @@ Add the dependency. This library use [ThreeTenABP](https://github.com/JakeWharto
 ```
 	dependencies {
 	        compile () {
-	                exclude group: 'threetenabp', module: 'threetenabp'
+	        	    compile ('com.github.shts:ClockAnimationView:1.0.0') {
+    	                exclude group: 'threetenabp', module: 'threetenabp'
+	        	    }
 	        }
 	}
 ```
