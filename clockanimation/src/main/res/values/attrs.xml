@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClockAnimationView">
+        <attr name="faceColor" format="color" />
+        <attr name="rimColor" format="color" />
+        <attr name="rimStrokeWidth" format="dimension" />
+        <attr name="animDurations" format="integer" />
+    </declare-styleable>
+</resources>
