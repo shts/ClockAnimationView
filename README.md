@@ -3,9 +3,9 @@ ClockAnimationView
 
 Android animated clock view.
 
-<img src="animation.gif" width=200 />
+<img src="image/animation.gif" width=200 />
 
-<img src="image.png" width=200 />
+<img src="image/image.png" width=200 />
 
 
 How to Use
@@ -53,10 +53,10 @@ Add the dependency. This library use [ThreeTenABP](https://github.com/JakeWharto
 Credits
 ---
 
-I used [ClockDrawableAnimation](https://github.com/evelyne24/ClockDrawableAnimation) library by (evelyne24)[https://github.com/evelyne24] as a base for development.
+I used [ClockDrawableAnimation](https://github.com/evelyne24/ClockDrawableAnimation) library by [evelyne24](https://github.com/evelyne24) as a base for development.
+
 
 License
-
 ---
 
 ```
