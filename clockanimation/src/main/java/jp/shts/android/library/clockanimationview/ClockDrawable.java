@@ -15,7 +15,6 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
@@ -28,8 +27,6 @@ public class ClockDrawable extends Drawable implements Animatable {
     private Paint rimPaint;
     private ValueAnimator minuteAnimator;
     private ValueAnimator hourAnimator;
-    private ValueAnimator minuteAnimatorImmediately;
-    private ValueAnimator hourAnimatorImmediately;
 
     private float rimRadius;
     private float faceRadius;
@@ -63,7 +60,6 @@ public class ClockDrawable extends Drawable implements Animatable {
     }
 
     private void init() {
-        Log.d(TAG, "init: ");
         hourHandPath = new Path();
         minuteHandPath = new Path();
 
@@ -71,13 +67,10 @@ public class ClockDrawable extends Drawable implements Animatable {
 
         setUpMinuteAnimator();
         setUpHourAnimator();
-        setUpMinuteAnimatorImmediately();
-        setUpHourAnimatorImmediately();
     }
 
     @Override
     protected void onBoundsChange(Rect bounds) {
-        Log.d(TAG, "onBoundsChange: ");
         super.onBoundsChange(bounds);
 
         rimRadius = Math.min(bounds.width(), bounds.height()) / 2f - rimPaint.getStrokeWidth();
@@ -96,11 +89,10 @@ public class ClockDrawable extends Drawable implements Animatable {
         minuteHandPath.moveTo(bounds.centerX(), bounds.centerY());
         minuteHandPath.addRect(bounds.centerX(), top, bounds.centerX(), top - minuteHandLength, Direction.CCW);
         minuteHandPath.close();
-    }String TAG = ClockDrawable.class.getSimpleName();
+    }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        Log.d(TAG, "draw: ");
         Rect bounds = getBounds();
 
         // draw the outer rim of the clock
@@ -141,7 +133,6 @@ public class ClockDrawable extends Drawable implements Animatable {
 
     @Override
     public void start() {
-        Log.d(TAG, "start: ");
         hourAnimInterrupted = false;
         minAnimInterrupted = false;
         hourAnimator.start();
@@ -171,7 +162,6 @@ public class ClockDrawable extends Drawable implements Animatable {
     }
 
     void animate(ClockTime newTime) {
-        Log.d(TAG, "animate: ");
         long minutesDifference = getMinutesDifference(previousTime, newTime);
         // 60min ... 360grade
         // minDif .. minDelta
@@ -200,7 +190,6 @@ public class ClockDrawable extends Drawable implements Animatable {
 
     @Override
     public void stop() {
-        Log.d(TAG, "stop: ");
         hourAnimInterrupted = true;
         minAnimInterrupted = true;
         hourAnimator.cancel();
@@ -281,47 +270,6 @@ public class ClockDrawable extends Drawable implements Animatable {
             }
         });
         hourAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                if (!hourAnimInterrupted) {
-                    remainingHourRotation = 0f;
-                }
-                if (clockAnimationListener != null) clockAnimationListener.onHourAnimationEnd();
-            }
-        });
-    }
-
-    private void setUpMinuteAnimatorImmediately() {
-        minuteAnimatorImmediately = ValueAnimator.ofFloat(0, 0);
-        minuteAnimatorImmediately.setInterpolator(new AccelerateDecelerateInterpolator());
-        minuteAnimatorImmediately.setDuration(duration);
-        minuteAnimatorImmediately.addUpdateListener(new AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                if (clockAnimationListener != null) clockAnimationListener.onHourAnimationUpdate();
-                float fraction = (float) valueAnimator.getAnimatedValue();
-                remainingHourRotation = targetHourRotation - fraction;
-                currentHourRotation = fraction;
-                invalidateSelf();
-            }
-        });
-    }
-
-    private void setUpHourAnimatorImmediately() {
-        hourAnimatorImmediately = ValueAnimator.ofFloat(0, 0);
-        hourAnimatorImmediately.setInterpolator(new AccelerateDecelerateInterpolator());
-        hourAnimatorImmediately.setDuration(duration);
-        hourAnimatorImmediately.addUpdateListener(new AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                if (clockAnimationListener != null) clockAnimationListener.onHourAnimationUpdate();
-                float fraction = (float) valueAnimator.getAnimatedValue();
-                remainingHourRotation = targetHourRotation - fraction;
-                currentHourRotation = fraction;
-                invalidateSelf();
-            }
-        });
-        hourAnimatorImmediately.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 if (!hourAnimInterrupted) {
