@@ -8,9 +8,6 @@ import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
-import org.threeten.bp.LocalDateTime;
-
-
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.graphics.Paint.Cap.ROUND;
 import static android.graphics.Paint.Style.FILL;
@@ -75,12 +72,30 @@ public class ClockAnimationView extends android.support.v7.widget.AppCompatImage
     }
 
     /**
+     * Set time
+     *
+     * @param hours   hours
+     * @param minutes minutes
+     */
+    public void setTime(int hours, int minutes) {
+        checkParams(hours, minutes);
+        clockDrawable.setTime(new ClockTime(hours, minutes));
+    }
+
+    /**
      * Start animation
      *
-     * @param localDateTime LocalDateTime
+     * @param hours   hours
+     * @param minutes minutes
      */
-    public void startAnimation(LocalDateTime localDateTime) {
-        clockDrawable.start(localDateTime);
+    public void animateToTime(int hours, int minutes) {
+        checkParams(hours, minutes);
+        clockDrawable.animate(new ClockTime(hours, minutes));
+    }
+
+    private void checkParams(int hours, int minutes) {
+        if (23 < hours) throw new IllegalArgumentException("hours must be in 0-23.");
+        if (59 < minutes) throw new IllegalArgumentException("minutes must be in 0-59.");
     }
 
     /**

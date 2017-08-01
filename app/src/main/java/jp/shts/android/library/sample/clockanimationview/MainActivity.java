@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import org.threeten.bp.LocalDateTime;
-
 import jp.shts.android.library.clockanimationview.ClockAnimationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,13 +14,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final ClockAnimationView clockAnimationView = (ClockAnimationView) findViewById(R.id.image);
+        clockAnimationView.animateToTime(0, 45);
 
-        Button b = (Button) findViewById(R.id.button);
+        final Button b = (Button) findViewById(R.id.button);
+        b.setText("to 2:30");
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clockAnimationView.startAnimation(LocalDateTime.now().withHour(2).withMinute(30));
+                switch (counter) {
+                    case 0:
+                        clockAnimationView.animateToTime(2, 30);
+                        b.setText("to 7:10");
+                        break;
+                    case 1:
+                        clockAnimationView.animateToTime(7, 10);
+                        b.setText("to 9:50");
+                        break;
+                    case 2:
+                        clockAnimationView.animateToTime(9, 50);
+                        b.setText("to Finish");
+                        break;
+                    default:
+                        finish();
+                        break;
+                }
+                counter++;
             }
         });
     }
+    int counter=0;
 }
