@@ -39,13 +39,13 @@ allprojects {
 }
 ```
 
-Add the dependency. This library use [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP). Please exclude `threetenabp` library.
+Add the dependency. 
 
 
 ```
 	dependencies {
 	        compile () {
-	                exclude group: 'threetenabp', module: 'threetenabp'
+		        compile 'com.github.shts:ClockAnimationView:1.0.0'
 	        }
 	}
 ```
