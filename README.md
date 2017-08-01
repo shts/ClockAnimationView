@@ -5,9 +5,9 @@ ClockAnimationView
 
 Android animated clock view.
 
-<img src="animation.gif" width=200 />
+<img src="image/animation.gif" width=200 />
 
-<img src="image.png" width=200 />
+<img src="image/image.png" width=200 />
 
 
 How to Use
@@ -41,15 +41,19 @@ allprojects {
 }
 ```
 
-Add the dependency. This library use [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP). Please exclude `threetenabp` library.
+Add the dependency. 
 
 
 ```
 	dependencies {
 	        compile () {
+<<<<<<< HEAD
 	        	    compile ('com.github.shts:ClockAnimationView:1.0.0') {
     	                exclude group: 'threetenabp', module: 'threetenabp'
 	        	    }
+=======
+		        compile 'com.github.shts:ClockAnimationView:1.1.0'
+>>>>>>> 85959f940ca12b07ea515904d67424ae91e73ae7
 	        }
 	}
 ```
@@ -57,10 +61,10 @@ Add the dependency. This library use [ThreeTenABP](https://github.com/JakeWharto
 Credits
 ---
 
-I used [ClockDrawableAnimation](https://github.com/evelyne24/ClockDrawableAnimation) library by (evelyne24)[https://github.com/evelyne24] as a base for development.
+I used [ClockDrawableAnimation](https://github.com/evelyne24/ClockDrawableAnimation) library by [evelyne24](https://github.com/evelyne24) as a base for development.
+
 
 License
-
 ---
 
 ```

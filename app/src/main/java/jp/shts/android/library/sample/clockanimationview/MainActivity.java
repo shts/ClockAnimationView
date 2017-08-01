@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final ClockAnimationView clockAnimationView = (ClockAnimationView) findViewById(R.id.image);
-        clockAnimationView.animateToTime(0, 45);
+        clockAnimationView.setTime(0, 45);
 
         final Button b = (Button) findViewById(R.id.button);
         b.setText("to 2:30");
