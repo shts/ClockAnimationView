@@ -47,13 +47,7 @@ Add the dependency.
 ```
 	dependencies {
 	        compile () {
-<<<<<<< HEAD
-	        	    compile ('com.github.shts:ClockAnimationView:1.0.0') {
-    	                exclude group: 'threetenabp', module: 'threetenabp'
-	        	    }
-=======
-		        compile 'com.github.shts:ClockAnimationView:1.1.0'
->>>>>>> 85959f940ca12b07ea515904d67424ae91e73ae7
+		        compile 'com.github.shts:ClockAnimationView:1.2.0'
 	        }
 	}
 ```
