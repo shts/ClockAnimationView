@@ -139,27 +139,28 @@ public class ClockDrawable extends Drawable implements Animatable {
         minuteAnimator.start();
     }
 
-    void setTime(ClockTime newTime) {
-        long minutesDifference = getMinutesDifference(previousTime, newTime);
-        // 60min ... 360grade
-        // minDif .. minDelta
-        float minDeltaRotation = ((float) minutesDifference * 360f) / 60f;
-        // 720min ... 360grade = 12h ... 360grade
-        // minDif ... hourDelta
-        float hourDeltaRotation = ((float) minutesDifference * 360f) / 720f;
-
-        remainingMinRotation += minDeltaRotation;
-        remainingHourRotation += hourDeltaRotation;
-
-        targetHourRotation = currentHourRotation + remainingHourRotation;
-        targetMinRotation = currentMinRotation + remainingMinRotation;
-
-        start();
-
-        previousTime = newTime;
-
-        invalidateSelf();
-    }
+    // TODO:
+//    void setTime(ClockTime newTime) {
+//        long minutesDifference = getMinutesDifference(previousTime, newTime);
+//        // 60min ... 360grade
+//        // minDif .. minDelta
+//        float minDeltaRotation = ((float) minutesDifference * 360f) / 60f;
+//        // 720min ... 360grade = 12h ... 360grade
+//        // minDif ... hourDelta
+//        float hourDeltaRotation = ((float) minutesDifference * 360f) / 720f;
+//
+//        remainingMinRotation += minDeltaRotation;
+//        remainingHourRotation += hourDeltaRotation;
+//
+//        targetHourRotation = currentHourRotation + remainingHourRotation;
+//        targetMinRotation = currentMinRotation + remainingMinRotation;
+//
+//        start();
+//
+//        previousTime = newTime;
+//
+//        invalidateSelf();
+//    }
 
     void animate(ClockTime newTime) {
         long minutesDifference = getMinutesDifference(previousTime, newTime);
