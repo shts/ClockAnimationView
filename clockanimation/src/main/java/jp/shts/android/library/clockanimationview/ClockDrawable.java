@@ -50,7 +50,6 @@ public class ClockDrawable extends Drawable implements Animatable {
     private boolean minAnimInterrupted;
 
     private LocalDateTime previousTime;
-    private boolean animateDays = true;
     private final long duration;
 
     @Nullable
@@ -191,10 +190,6 @@ public class ClockDrawable extends Drawable implements Animatable {
         minAnimator.start();
     }
 
-    void setAnimateDays(boolean animateDays) {
-        this.animateDays = animateDays;
-    }
-
     void start(LocalDateTime newTime) {
         long minDiff = getMinutesBetween(previousTime, newTime);
         // 60min ... 360grade
@@ -236,10 +231,6 @@ public class ClockDrawable extends Drawable implements Animatable {
     }
 
     private long getMinutesBetween(LocalDateTime t1, LocalDateTime t2) {
-        if (animateDays) {
-            return ChronoUnit.MINUTES.between(t1, t2);
-        }
-        t2 = t2.withYear(t1.getYear()).withMonth(t1.getMonthValue()).withDayOfMonth(t1.getDayOfMonth());
         return ChronoUnit.MINUTES.between(t1, t2);
     }
 
