@@ -47,7 +47,7 @@ Add the dependency.
 ```
 	dependencies {
 	        compile () {
-		        compile 'com.github.shts:ClockAnimationView:1.2.0'
+		        compile 'com.github.shts:ClockAnimationView:1.2.2'
 	        }
 	}
 ```
