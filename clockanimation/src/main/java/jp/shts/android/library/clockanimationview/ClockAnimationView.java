@@ -45,11 +45,11 @@ public class ClockAnimationView extends android.support.v7.widget.AppCompatImage
     @ColorInt
     private int rimPaintColor;
     private float rimStrokeWidth;
+    private long duration;
 
     private ClockDrawable clockDrawable;
 
     private void init(Context context, AttributeSet attrs) {
-        long duration;
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ClockAnimationView);
             duration = ta.getInt(R.styleable.ClockAnimationView_animDurations, ANIMATION_DURATION);
@@ -79,7 +79,7 @@ public class ClockAnimationView extends android.support.v7.widget.AppCompatImage
      */
     public void setTime(int hours, int minutes) {
         checkParams(hours, minutes);
-        clockDrawable.animate(new ClockTime(hours, minutes));
+        clockDrawable.setTime(new ClockTime(hours, minutes));
     }
 
     /**

@@ -47,7 +47,7 @@ public class ClockDrawable extends Drawable implements Animatable {
     private boolean minAnimInterrupted;
 
     private ClockTime previousTime;
-    private final long duration;
+    private long duration;
 
     @Nullable
     private ClockAnimationListener clockAnimationListener;
@@ -59,11 +59,22 @@ public class ClockDrawable extends Drawable implements Animatable {
         init();
     }
 
+    ClockDrawable(Paint facePaint, Paint rimPaint, long duration, int hour, int minute) {
+        this.facePaint = facePaint;
+        this.rimPaint = rimPaint;
+        this.duration = duration;
+        init(hour, minute);
+    }
+
     private void init() {
+        this.init(0, 0);
+    }
+
+    private void init(int hour, int minute) {
         hourHandPath = new Path();
         minuteHandPath = new Path();
 
-        previousTime = new ClockTime(0, 0);
+        previousTime = new ClockTime(hour, minute);
 
         setUpMinuteAnimator();
         setUpHourAnimator();
@@ -139,28 +150,12 @@ public class ClockDrawable extends Drawable implements Animatable {
         minuteAnimator.start();
     }
 
-    // TODO:
-//    void setTime(ClockTime newTime) {
-//        long minutesDifference = getMinutesDifference(previousTime, newTime);
-//        // 60min ... 360grade
-//        // minDif .. minDelta
-//        float minDeltaRotation = ((float) minutesDifference * 360f) / 60f;
-//        // 720min ... 360grade = 12h ... 360grade
-//        // minDif ... hourDelta
-//        float hourDeltaRotation = ((float) minutesDifference * 360f) / 720f;
-//
-//        remainingMinRotation += minDeltaRotation;
-//        remainingHourRotation += hourDeltaRotation;
-//
-//        targetHourRotation = currentHourRotation + remainingHourRotation;
-//        targetMinRotation = currentMinRotation + remainingMinRotation;
-//
-//        start();
-//
-//        previousTime = newTime;
-//
-//        invalidateSelf();
-//    }
+    void setTime(ClockTime newTime) {
+        duration = 0L;
+        setUpMinuteAnimator();
+        setUpHourAnimator();
+        animate(newTime);
+    }
 
     void animate(ClockTime newTime) {
         long minutesDifference = getMinutesDifference(previousTime, newTime);

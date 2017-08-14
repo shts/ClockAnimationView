@@ -1,7 +1,7 @@
 package jp.shts.android.library.clockanimationview;
 
 class ClockTime {
-    int hours, minutes;
+    private int hours, minutes;
 
     ClockTime(int hours, int minutes) {
         this.hours = hours;
