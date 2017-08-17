@@ -90,7 +90,7 @@ public class ClockAnimationView extends android.support.v7.widget.AppCompatImage
      */
     public void animateToTime(int hours, int minutes) {
         checkParams(hours, minutes);
-        clockDrawable.animate(new ClockTime(hours, minutes));
+        clockDrawable.animateToTime(new ClockTime(hours, minutes));
     }
 
     private void checkParams(int hours, int minutes) {

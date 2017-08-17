@@ -151,13 +151,18 @@ public class ClockDrawable extends Drawable implements Animatable {
     }
 
     void setTime(ClockTime newTime) {
-        duration = 0L;
-        setUpMinuteAnimator();
-        setUpHourAnimator();
-        animate(newTime);
+        setUpMinuteAnimator(0L);
+        setUpHourAnimator(0L);
+        calcAndExecute(newTime);
     }
 
-    void animate(ClockTime newTime) {
+    void animateToTime(ClockTime newTime) {
+        setUpMinuteAnimator();
+        setUpHourAnimator();
+        calcAndExecute(newTime);
+    }
+
+    private void calcAndExecute(ClockTime newTime) {
         long minutesDifference = getMinutesDifference(previousTime, newTime);
         // 60min ... 360grade
         // minDif .. minDelta
@@ -226,6 +231,10 @@ public class ClockDrawable extends Drawable implements Animatable {
     }
 
     private void setUpMinuteAnimator() {
+        setUpMinuteAnimator(this.duration);
+    }
+
+    private void setUpMinuteAnimator(long duration) {
         minuteAnimator = ValueAnimator.ofFloat(0, 0);
         minuteAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         minuteAnimator.setDuration(duration);
@@ -252,6 +261,10 @@ public class ClockDrawable extends Drawable implements Animatable {
     }
 
     private void setUpHourAnimator() {
+        setUpHourAnimator(this.duration);
+    }
+
+    private void setUpHourAnimator(long duration) {
         hourAnimator = ValueAnimator.ofFloat(0, 0);
         hourAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         hourAnimator.setDuration(duration);

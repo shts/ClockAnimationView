@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                         b.setText("to 7:10");
                         break;
                     case 1:
-                        clockAnimationView.animateToTime(7, 10);
+                        clockAnimationView.setTime(7, 10);
                         b.setText("to 9:50");
                         break;
                     case 2:
